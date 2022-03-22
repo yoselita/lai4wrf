@@ -1,0 +1,20 @@
+Evergreen Needleleaf Forest
+Evergreen Broadleaf Forest
+Deciduous Needleleaf Forest
+Deciduous Broadleaf Forest
+Mixed Forests
+Closed Shrublands
+Open Shrublands
+Woody Savannas
+Savannas
+Grasslands
+Permanent wetlands
+Croplands
+Urban and Built-Up
+Cropland/Natural vegetation mosaic
+Snow and Ice
+Barren or Sparsely Vegetated
+Water
+Wooded Tundra
+Mixed Tundra
+Barren Tundra
