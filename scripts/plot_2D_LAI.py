@@ -16,21 +16,19 @@ month_names = ['January','February','March','April','May','June',\
                'July','August','September','October','November','December']
 domain = 'EUR11'
 varname = 'LAI12M'
+projection= 'lat-lon' 	#lat-lon, mercator, lambert	
 
 if len(sys.argv) < 2:
 	print("Input not given, cannot continue")
 	exit()
 elif len(sys.argv) < 3:
 	fname=sys.argv[1]  		# geo_em.d01.nc
-	projection='lat-lon'		# default is set to 'lat-lon' projection
 elif len(sys.argv) < 4:
 	fname=sys.argv[1]  		# geo_em.d01.nc
 	fname1=sys.argv[2]  		# geo_em.d01.nc
-	projection='lat-lon'		# default is set to 'lat-lon' projection
 else:
 	fname=sys.argv[1]  		# geo_em.d01.nc
 	fname1=sys.argv[2]  		# geo_em.d01.nc
-	projection=sys.argv[3] 		#lat-lon, mercator, lambert	
 
 
 # ------------------------------------------------
@@ -145,7 +143,7 @@ txres.txFontHeightF = 0.020
 
 #output = os.path.splitext(os.path.basename(fname))[1]
 
-outname = fname.split("_")[4]
+outname = fname.split("_")[2]
 wks     = Ngl.open_wks("pdf","monthly_LAI_"+outname)
 plot = []
 for month in months:
@@ -159,7 +157,7 @@ Ngl.frame(wks)
 
 
 if fname1:
-    outname = fname1.split("_")[4]
+    outname = fname1.split("_")[2]
     wks1     = Ngl.open_wks("pdf","monthly_LAI_"+outname) 
     plot_var1 = []
     for month in months:
@@ -171,7 +169,7 @@ if fname1:
     Ngl.text_ndc(wks1,outname + " LAI",0.5,0.975,txres)
     Ngl.frame(wks1)
 
-    outname = fname.split("_")[4]+"-"+fname1.split("_")[4]
+    outname = fname.split("_")[2]+"-"+fname1.split("_")[2]
     wks_diff = Ngl.open_wks("pdf","monthly_diff_LAI") 
     plot_diff = []
     res_diff                      = res

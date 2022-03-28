@@ -1,11 +1,14 @@
-#*******************************************************************************************
+#!/bin/bash
+########################################################################################
 # This script calaculates monthly mean LAI over various years.
 # The filename format of the data should be:
 # "*LAI_${year}${month}*000000_GLOBE_VGT_V1_area_subset.nc"
 # or
 # "*c3s_LAI_${year}${month}*000000_GLOBE_VGT_V1.0.1.nc"
-#*******************************************************************************************
+########################################################################################
 source activate <env_name>] 
+
+data_version=$1
 
 # Define all years and months for which data are available
 domain_boundaries="75, -50, 20, 70"
@@ -14,9 +17,9 @@ months=`seq -w 1 12`
 
 # Define input and output directory
 wrkdir=`pwd`
-datadir="${homedir}/data/"
-outdir="${homedir}/data/monthly_means/"
-final_output="${homedir}/data/LAI_means/"
+datadir="${wrkdir}/data/"
+outdir="${wrkdir}/monthly_means/"
+final_output="${wrkdir}/LAI_means/"
 [ -d ${outdir} ] || mkdir ${outdir}
 [ -d ${final_output} ] || mkdir ${final_output}
 

@@ -4,7 +4,7 @@
 ; varaiable in geo_em file. 
 ;  
 ; To run the script:
-; ncl test.ncl 'month="07"' 'geo_file = "geo_em_filename"' 'filename = "remapped_LAI_filename"'
+; ncl newLAI2geo_em.ncl 'month="07"' 'geo_file = "geo_em_filename"' 'filename = "remapped_LAI_file"'
 ;***********************************************************************************************
 begin
   
