@@ -25,7 +25,7 @@ B) To obtain LAI maps for EUR11 CORDEX domain (e.g. see as an example geo_em fil
 NOTE:
 For table values for EUR11 domain also version v03 of the SPOT data was processed. As it was shown that these values are unrealistically low, only v01 was additionally processed and used for creating the maps. 
 
-All the scripts and programs, with additional descriptions to follow the all above-mentioned steps are given in the [folder](./scripts)
-The results for the EUR11 domain are gives in [folder](./EUR11)
+All the scripts and programs, with additional descriptions to follow the all above-mentioned steps are given in the [folder](./scripts).
+The results for the EUR11 domain are given in [folder](./EUR11).
 
 
