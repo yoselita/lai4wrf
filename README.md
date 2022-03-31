@@ -28,4 +28,4 @@ For table values for EUR11 domain also version v03 of the SPOT data was processe
 All the scripts and programs, with additional descriptions to follow the all above-mentioned steps are given in the folder [scripts](./scripts).
 The results for the EUR11 domain are given in the folder [EUR11](./EUR11).
 
-
+Bellow you can see the comparison (check [plot_2D_LAI.py](scripts/plot_2D_LAI.py)) of monthly mean values between new LAI obtained from the 10-year SPOT observations and the default monthly mean LAI maps available in WRF: ![LAI difference](./EUR11/geo_em_files/monthly_diff_LAI.png)
