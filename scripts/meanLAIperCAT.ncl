@@ -13,11 +13,33 @@ end if
 LUfile="remapped_LU.nc"
 LU_cats=(/"ENF", "EBF", "DNF", "DBF", "MF", "CS", "OS", "WS", "S", "G", \
 	"PW", "C", "UB", "C/NVM", "SI", "BSV", "W", "WT", "MT", "BT", "L"/)
+	
+LU_categories=(/"Evergreen Needleleaf Forest", \
+        "Evergreen Broadleaf Forest", \
+        "Deciduous Needleleaf Forest", \
+        "Deciduous Broadleaf Forest", \
+        "Mixed Forests", \
+        "Closed Shrublands", \
+        "Open Shrublands", \
+        "Woody Savannas", \
+        "Savannas", \
+        "Grasslands", \
+        "Permanent Wetlands", \
+        "Croplands", \
+        "Urban and Built-Up", \
+        "Cropland/Natural Vegetation Mosaic", \
+        "Snow and Ice", \
+        "Barren or Sparsely Vegetated", \
+        "Water", \
+        "Wooded Tundra", \
+        "Mixed Tundra", \
+        "Barren Tundra", \
+        "Lakes"/)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; open the input netcdf file (wrfout file)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-months=ispan(1,12,1)
+months=(/"01","02","03","04","05","06","07","08","09","10","11","12"/)
 LAI_avg        = new((/dimsizes(LU_cats),dimsizes(months)/),"float")
 LAI_max        = LAI_avg
 LAI_avg_std    = LAI_avg
@@ -27,7 +49,7 @@ ngrids_per_cat = new((/dimsizes(LU_cats)/),"string")
 
 ; loop over months
 do i = 0, dimsizes(months)-1, 1
-  month=tostring(months(i))
+  month=months(i)
   LAI_file     = addfile(path2means + "mean_LAI_" + month + "_v01.nc","r") 
   LAI_max_file = addfile(path2means + "max_LAI_"  + month + "_v01.nc","r") 
   LU_file      = addfile(LUfile,"r") 
@@ -75,22 +97,22 @@ end do
   option        = True
   option@row    = False
   option@fout   = "LAI_avg_"+data_version+".csv"
-  write_matrix (LAI_avg, "12f10.2", option)
+  write_matrix (LAI_avg, "16f14.2", option)
 
   option@fout   = "LAI_avg_std_"+data_version+".csv"
-  write_matrix (LAI_avg_std, "12f10.2", option)
+  write_matrix (LAI_avg_std, "16f14.2", option)
 
   option@fout   = "LAI_max_"+data_version+".csv"
-  write_matrix (LAI_max, "12f10.2", option)
+  write_matrix (LAI_max, "16f14.2", option)
 
   option@fout   = "LAI_max_std_"+data_version+".csv"
-  write_matrix (LAI_max_std, "12f10.2", option)
+  write_matrix (LAI_max_std, "16f14.2", option)
 
   option@fout   = "LAI_median_"+data_version+".csv"
-  write_matrix (median, "12f10.2", option)
+  write_matrix (median, "16f14.2", option)
 
   option@fout   = "LAI_stat_std_"+data_version+".csv"
-  write_matrix (std, "12f10.2", option)
+  write_matrix (std, "16f14.2", option)
   
   ; Write out percentage of grids per category
   asciiwrite("Ngrids_per_cat.txt",ngrids_per_cat)
