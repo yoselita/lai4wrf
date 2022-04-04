@@ -1,19 +1,19 @@
 #!/bin/bash
 ########################################################################################
 # This script calaculates monthly mean LAI over various years.
+# Downloaded data are whole globe, so we cut domain to avoid possible memory issues
 # The filename format of the data should be:
-# "*LAI_${year}${month}*000000_GLOBE_VGT_V1_area_subset.nc"
-# or
-# "*c3s_LAI_${year}${month}*000000_GLOBE_VGT_V1.0.1.nc"
+# "c3s_LAI_${year}${month}${nominal_day}000000_GLOBE_VGT_${data_version}.nc"
+#
+# NOTE: adjust the filename format in the raw 33 is using different data source
 ########################################################################################
-source activate <env_name>] 
-
-data_version=$1
+source activate <env_name>
 
 # Define all years and months for which data are available
-domain_boundaries="75, -50, 20, 70"
-years=`seq 2004 2013`
+domain_boundaries="-50,70,20,75"	# define domain boudaries: lon_west,lon_east,lat_south,lat_north
+years=`seq start_year end_year`		# define start and end year of your downloaded data
 months=`seq -w 1 12`
+data_version="1.0.1"				# adjust data version if necessary. 
 
 # Define input and output directory
 wrkdir=`pwd`
@@ -30,29 +30,14 @@ cd ${datadir}
 for year in ${years}; do
    for month in ${months}; do
     	# Mergening files per month per year
-    	# Downloaded data for some reason for 2007, 2010, 2011 are downloaded for whole globe, 
-    	# cutting while downloading does not work for these years
-    	# Therfore we cut the domain so we can megre with the rest of the years
-	if [ ${year} == "2007" ] || [ ${year} == "2010" ] || [ ${year} == "2011" ] ; then
-		raw_files="*c3s_LAI_${year}${month}*000000_GLOBE_VGT_V1.0.1.nc"
+		raw_files="*c3s_LAI_${year}${month}*000000_GLOBE_VGT_V${data_version}.nc" # If different name, has to be adjusted
 		if [ ! -f ${outdir}/mean_${year}${month}.nc ]; then 			
 			for file in ${raw_files}; do	
 				if [ ! -f cut_${file} ]; then			 
-					cdo -select,name=LAI ${file} var_${file}
-					cdo sellonlatbox,${domain_boundaries} var_${file} cut_${file}
-					rm var_${file}
+					cdo sellonlatbox,${domain_boundaries} -select,name=LAI ${file} cut_${file}
 				fi
 			done
-			cdo mergetime cut_${raw_files} merged_${year}${month}.nc
-		fi
-	else
-		files="*LAI_${year}${month}*000000_GLOBE_VGT_V1_area_subset.nc"
-		if [ ! -f ${outdir}/mean_${year}${month}.nc ]; then
-			for file in ${files}; do
-				cdo -select,name=LAI ${file} var_${file}
-			done
-			cdo mergetime var_${files} merged_${year}${month}.nc
-			rm var_${files}
+			cdo mergetime cut_${raw_files} merged_${year}${month}.nc; rm cut_${raw_files}
 		fi		
 	fi
 
@@ -73,7 +58,6 @@ for month in ${months}; do
 	# Merging files per month
 	filenames="mean_*_${month}.nc"
 	cdo mergetime ${outdir}/${filenames} ${final_output}/merged_LAI_${month}.nc
-	
 	# Calculation mean and max over defined period of years
 	cdo timmean   ${final_output}/merged_LAI_${month}.nc ${final_output}/mean_LAI_${month}_v01.nc
 	cdo timmax    ${final_output}/merged_LAI_${month}.nc ${final_output}/max_LAI_${month}_v01.nc
