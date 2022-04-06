@@ -35,25 +35,25 @@ Scripts to plot table data and LAI maps:
 1. Plot  LAI2D maps:
 	python3 plot_2D_LAI.py <geo_em.nc_old_LAI> <geo_em.nc_new_LAI>
 	
-	Necessary input:
-		geo_em.nc_default_LAI	- original output after running ./geogrid.exe
-		geo_em.nc_new_LAI	- (output from step A.4)
+	Necessary input:<br/>
+		&emsp;geo_em.nc_default_LAI	- original output after running ./geogrid.exe<br/>
+		&emsp;geo_em.nc_new_LAI	- (output from step A.4)<br/>
 
 2. Plot table data:
 	python3 plot_LAI_montly_means_per_cat.py <data1_version> <data2_version> (arguments optional)
 	
-	Necessary input:
-		LU_CATS.txt 		- List of category names
-		LAI_MPTBL.csv 		- LAI from MPTABLE.TBL from WRF
-		LAI_VEGTBL.csv  	- LAI from VERGPARM.TBL from WRF
-		LAI_avg_v1.0.1.csv	- LAI means (output from step B.4)
-		LAI_avg_std_v1.0.1.csv	- LAI maximum values (output from step B.4)
-		LAI_max_v1.0.1.csv	- LAI mean LAI per categories standard deviation (output from step B.4)
-		Ngrids_per_cat.txt	- Percentage of the category within the indicated domain (output from step B.4)
-	        Optional:
-		LAI_avg_v03.csv	- LAI means v03 (other set of LAI data)
-		LAI_avg_std_v03.csv	- LAI maximum values v03 (other set of LAI data)
-		LAI_max_v03.csv	- LAI mean LAI per categories standard deviation v03 (other set of LAI data)
+	Necessary input: <br/>
+	    &emsp; LU_CATS.txt 		- List of category names <br/>
+		&emsp; LAI_MPTBL.csv 		- LAI from MPTABLE.TBL from WRF <br/>
+		&emsp; LAI_VEGTBL.csv  	- LAI from VERGPARM.TBL from WRF <br/>
+		&emsp; LAI_avg_v1.0.1.csv	- LAI means (output from step B.4) <br/>
+		&emsp; LAI_avg_std_v1.0.1.csv	- LAI maximum values (output from step B.4) <br/>
+		&emsp; LAI_max_v1.0.1.csv	- LAI mean LAI per categories standard deviation (output from step B.4) <br/>
+		&emsp; Ngrids_per_cat.txt	- Percentage of the category within the indicated domain (output from step B.4) <br/>
+	Optional input: <br/>
+		&emsp; LAI_avg_v03.csv	- LAI means v03 (other set of LAI data) <br/>
+		&emsp; LAI_avg_std_v03.csv	- LAI maximum values v03 (other set of LAI data) <br/>
+		&emsp; LAI_max_v03.csv	- LAI mean LAI per categories standard deviation v03 (other set of LAI data) <br/>
 
 		
 
