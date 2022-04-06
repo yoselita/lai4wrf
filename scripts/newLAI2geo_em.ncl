@@ -1,11 +1,12 @@
-;***********************************************************************************************
+;*****************************************************************************************************
 ; This script reades montlhy mean LAI observational data remapped to
 ; the WRF grid, converts ushort data format to float, and changes LAI12M
 ; varaiable in geo_em file. 
 ;  
 ; To run the script:
-; ncl newLAI2geo_em.ncl 'month="07"' 'geo_file = "geo_em_filename"' 'filename = "remapped_LAI_file"'
-;***********************************************************************************************
+; ncl 'month="07"' 'geo_file = "geo_em_filename"' 'filename = "remapped_LAI_file"' newLAI2geo_em.ncl
+;*****************************************************************************************************
+
 begin
   
   ; Read argument "Month"
