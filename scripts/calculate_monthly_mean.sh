@@ -10,18 +10,20 @@
 source activate <env_name>
 
 # Define all years and months for which data are available
-domain_boundaries="-50,70,20,75"	# define domain boudaries: lon_west,lon_east,lat_south,lat_north
+domain_boundaries="-50,70,20,75"		# define domain boudaries: lon_west,lon_east,lat_south,lat_north
 years=`seq start_year end_year`		# define start and end year of your downloaded data
 months=`seq -w 1 12`
-data_version="1.0.1"				# adjust data version if necessary. 
+data_version=$1				# adjust data version if necessary. 
 
 # Define input and output directory
 wrkdir=`pwd`
 datadir="${wrkdir}/data/"
 outdir="${wrkdir}/monthly_means/"
-final_output="${wrkdir}/LAI_means/"
+merged="${wrkdir}/merged/"
+means="${wrkdir}/LAI_means/"
 [ -d ${outdir} ] || mkdir ${outdir}
-[ -d ${final_output} ] || mkdir ${final_output}
+[ -d ${merged} ] || mkdir ${merged}
+[ -d ${means} ] || mkdir ${means}
 
 # Eneter the data directory
 cd ${datadir}
@@ -57,9 +59,9 @@ done
 for month in ${months}; do
 	# Merging files per month
 	filenames="mean_*_${month}.nc"
-	cdo mergetime ${outdir}/${filenames} ${final_output}/merged_LAI_${month}.nc
+	cdo mergetime ${outdir}/${filenames} ${merged}/merged_LAI_${month}.nc
 	# Calculation mean and max over defined period of years
-	cdo timmean   ${final_output}/merged_LAI_${month}.nc ${final_output}/mean_LAI_${month}_v01.nc
-	cdo timmax    ${final_output}/merged_LAI_${month}.nc ${final_output}/max_LAI_${month}_v01.nc
+	cdo timmean   ${merged}/merged_LAI_${month}.nc ${means}/mean_LAI_${month}.nc
+	cdo timmax    ${merged}/merged_LAI_${month}.nc ${means}/max_LAI_${month}.nc
 done
 

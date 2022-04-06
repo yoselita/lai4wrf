@@ -3,10 +3,12 @@ import numpy as np
 import sys
 import os
 
+######################################################################################################
 # Python script to be run with 'python3 plot_domain.py argument1 argument2'
-# 	argument1= geo_em.nc file, also works with relative or absolute paths
-# 	argument2= projection (works with lat-lon and mercator)
+# 	argument1= geo_em.nc with LAI new
+# 	argument2= geo_em.nc with LAI default
 # output is a pdf file, located in the working directory
+######################################################################################################
 
 # ------------------------------------------------
 # Reading arguments input and projection 

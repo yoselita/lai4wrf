@@ -29,8 +29,5 @@ c.retrieve(
             '30', '31',
         ],
         'format': 'tgz',
-        'area': [
-            'AREA',
-        ],
     },
     'YEARMONTH_download.tar.gz')

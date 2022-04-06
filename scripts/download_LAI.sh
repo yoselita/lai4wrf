@@ -6,9 +6,7 @@
 # nohup ./download_LAI.sh <year> <month>
 # 
 # NOTE: For months < 10, put 0 before (i.e. 01 instead of 1)
-#
 #*******************************************************************************************
-
 
 # Set conda envirment with python, cdo, nco, ncl
 source activate <env_name>] 
@@ -16,13 +14,12 @@ source activate <env_name>]
 # Read argumentas and folders (adjust if necessary)
 YEAR=$1
 MONTH=$2
-domain_boundaries="75, -50, 20, 70"
-homedir=`pwd`
-datadir="${homedir}/data"
-mkdir -p ${datadir}
+wrkdir=`pwd`
+datadir="${wrkdir}/data"
+mkdir -p ${wrkdir}
 
 # Updating the script for downloading data directly from c3s
-sed -e "s/YEAR/${YEAR}/g;s/MONTH/${MONTH}/g;s/'AREA'/${domain_boundaries}/g;" get_LAI.py > get_LAI-${YEAR}${MONTH}.py
+sed -e "s/YEAR/${YEAR}/g;s/MONTH/${MONTH}/g;" get_LAI.py > get_LAI-${YEAR}${MONTH}.py
 python get_LAI-${YEAR}${MONTH}.py
 
 # Moving downloaded data to the data folder and cleaning the folder

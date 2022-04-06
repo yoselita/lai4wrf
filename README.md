@@ -1,6 +1,6 @@
 # lai4wrf
 
-Preparation of LAI from SPOT observations downloaded from C3S database for the period 2004-2013 for WRF simulations 
+Preparation of LAI from SPOT observations downloaded from C3S database for the period 1999-2013 for WRF simulations 
 =============
 
 The repository contans Leaf Area Index (LAI) processed data that can be used for running WRF. The processed data are based on SPOT satellite observations at 1km scale downloaded from [C3S database](https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-lai-fapar?tab=form).
