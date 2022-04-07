@@ -1,4 +1,4 @@
-Set od programs and scripts used for processing LAI observational data dor WRF
+Set od programs and scripts used for processing LAI observational data for WRF
 =============
 
 A) Steps and scripts to process the 2D map data (run ./get_LAI_tabels.sh):
